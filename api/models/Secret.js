@@ -16,7 +16,7 @@ const SecretSchema = new Schema({
   },
   expiresAt: {
     type: Date,
-    required: true
+    default: undefined
   },
   remainingViews: {
     type: Number,
@@ -24,4 +24,6 @@ const SecretSchema = new Schema({
   }
 });
 
-module.exports = Secret = mongoose.model("secret", SecretSchema);
+SecretSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
+
+module.exports = mongoose.model("secret", SecretSchema);

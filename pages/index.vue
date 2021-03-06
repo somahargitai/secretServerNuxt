@@ -132,7 +132,6 @@ export default {
       }
     },
     async submitSecret() {
-      // e.preventDefault();
       const res = await axios.post("/api/secret", {
         secret: this.secret,
         expireAfter: this.expireAfter,
@@ -166,7 +165,7 @@ export default {
     timeLimitRule: [
       (v) => !isNaN(v) || "It should be a number",
       (v) => v < 5001 || "It should not be higher than 5000",
-      (v) => v > 0 || "It should be positive",
+      (v) => v >= 0 || "It should be at least zero",
     ],
     nameRules: [
       (v) => !!v || "Name is required",
@@ -177,8 +176,6 @@ export default {
 </script>
 
 <style>
-
-
 .secretpost,
 .secretget {
   margin: 0 auto;

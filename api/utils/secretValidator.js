@@ -2,9 +2,10 @@ const Validator = require("validator");
 
 const validateSecret = secretData => {
   if (secretData === null || secretData === undefined) {
-    console.error("Error! Empty secret object provided!");
+    const errorMsg = "Error! Empty secret object provided!";
+    console.error(errorMsg);
     return {
-      errorMessage: "Error! Empty secret object provided!",
+      errorMessage: errorMsg,
       isValid: false
     };
   }
@@ -13,9 +14,10 @@ const validateSecret = secretData => {
     secretData.secret === undefined ||
     Validator.isEmpty(secretData.secret)
   ) {
-    console.error("Error! A non-zero long Secret must be provided");
+    const errorMsg = "Error! A non-zero long Secret must be provided";
+    console.error(errorMsg);
     return {
-      errorMessage: "Error! A non-zero long Secret must be provided",
+      errorMessage: errorMsg,
       isValid: false
     };
   }
@@ -24,20 +26,22 @@ const validateSecret = secretData => {
     secretData.expireAfterViews === undefined ||
     !Validator.isInt(secretData.expireAfterViews, { gt: 0 })
   ) {
-    console.error("Error! A view limit, greater than 0 should be provided");
+    const errorMsg = "Error! A view limit, greater than 0 should be provided";
+    console.error(errorMsg);
     return {
-      errorMessage: "Error! A view limit, greater than 0 should be provided",
+      errorMessage: errorMsg,
       isValid: false
     };
   }
   if (
     secretData.expireAfter === null ||
     secretData.expireAfter === undefined ||
-    !Validator.isInt(secretData.expireAfter, { gt: 0 })
+    !Validator.isInt(secretData.expireAfter, { min: 0 })
   ) {
-    console.error("Error! A time limit, greater than 1 should be provided");
+    const errorMsg = "Error! A positive or zero time limit should be provided";
+    console.error(errorMsg);
     return {
-      errorMessage: "Error! A time limit, greater than 1 should be provided",
+      errorMessage: errorMsg,
       isValid: false
     };
   }
