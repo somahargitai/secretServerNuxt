@@ -1,12 +1,12 @@
-const moment = require("moment");
-const { v4: uuidv4 } = require("uuid");
+const moment = require('moment');
+const { v4: uuidv4 } = require('uuid');
 
-const Secret = require("../models/Secret");
-const { validateSecret } = require("../utils/secretValidator");
-const { encryptSecret } = require("../utils/crypto");
+const Secret = require('../models/Secret');
+const { validateSecret } = require('../utils/secretValidator');
+const { encryptSecret } = require('../utils/crypto');
 
 const createNewSecret = async (req, res) => {
-  res.type("application/json");
+  res.type('application/json');
   const { errorMessage, isValid } = validateSecret(req.body);
   if (!isValid) {
     res.status(400);
@@ -25,7 +25,7 @@ const createNewSecret = async (req, res) => {
     };
 
     if (req.body.expireAfter != 0) {
-      newSecretObject.expiresAt = moment().add(req.body.expireAfter, "minutes");
+      newSecretObject.expiresAt = moment().add(req.body.expireAfter, 'minutes');
     }
 
     const newSecret = await Secret.create(newSecretObject);
@@ -34,7 +34,7 @@ const createNewSecret = async (req, res) => {
       hash: newSecret.urlHash,
       secretText: req.body.secret,
       createdAt: newSecret.createdAt,
-      expiresAt: newSecret.expiresAt ? newSecret.expiresAt : "",
+      expiresAt: newSecret.expiresAt ? newSecret.expiresAt : '',
       remainingViews: newSecret.remainingViews
     });
   } catch (error) {

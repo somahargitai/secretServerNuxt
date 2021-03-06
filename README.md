@@ -23,6 +23,7 @@ Then you can reach the services on the URLs above.
 
 - Due to Mongo Database behaviour, TTL is not accurate. Above the given time limit, data may live for additional 30-60 seconds.
 - As it is a demo project, I have added expiration and view limits. Even if API is permissive, frontend expects you to avoid time limit above 5000 minutes and view limit above 20.
+- Encryption requires a key, used in `api\utils\crypto.js`. For real-life usage, it should not be hardcoded like here but provided as an environmental variable.
 
 ## Alternate running options
 

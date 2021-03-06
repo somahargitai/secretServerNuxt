@@ -174,9 +174,9 @@ describe("getSecret", () => {
 
     expect(res.status).toHaveBeenCalledWith(503);
     expect(res.type).toHaveBeenCalledWith("application/json");
-    expect(res.json).toHaveBeenCalledWith(
-      "Error happened on getting secret: Error: DB not available"
-    );
+    expect(res.json).toHaveBeenCalledWith({
+      errorMessage: "Error happened on getting secret: Error: DB not available"
+    });
 
     expect(Secret.findOneAndUpdate).toHaveBeenCalledTimes(1);
     expect(Secret.deleteOne).toHaveBeenCalledTimes(0);

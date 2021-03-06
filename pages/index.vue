@@ -143,7 +143,7 @@ export default {
       this.textFieldHash = this.httpResult.hash;
     },
     clear() {
-      this.httpResult = '';
+      this.httpResult = "";
     }
   },
   data: () => ({

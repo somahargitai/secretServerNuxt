@@ -63,7 +63,7 @@ const getSecret = async (req, res) => {
     const errorMessage = `Error happened on getting secret: ${error}`;
     console.error(errorMessage);
     res.status(503);
-    return res.json(errorMessage);
+    return res.json({ errorMessage });
   }
 };
 

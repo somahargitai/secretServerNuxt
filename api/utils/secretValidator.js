@@ -1,8 +1,8 @@
-const Validator = require("validator");
+const Validator = require('validator');
 
 const validateSecret = secretData => {
   if (secretData === null || secretData === undefined) {
-    const errorMsg = "Error! Empty secret object provided!";
+    const errorMsg = 'Error! Empty secret object provided!';
     console.error(errorMsg);
     return {
       errorMessage: errorMsg,
@@ -14,7 +14,7 @@ const validateSecret = secretData => {
     secretData.secret === undefined ||
     Validator.isEmpty(secretData.secret)
   ) {
-    const errorMsg = "Error! A non-zero long Secret must be provided";
+    const errorMsg = 'Error! A non-zero long Secret must be provided';
     console.error(errorMsg);
     return {
       errorMessage: errorMsg,
@@ -26,7 +26,7 @@ const validateSecret = secretData => {
     secretData.expireAfterViews === undefined ||
     !Validator.isInt(secretData.expireAfterViews, { gt: 0 })
   ) {
-    const errorMsg = "Error! A view limit, greater than 0 should be provided";
+    const errorMsg = 'Error! A view limit, greater than 0 should be provided';
     console.error(errorMsg);
     return {
       errorMessage: errorMsg,
@@ -38,7 +38,7 @@ const validateSecret = secretData => {
     secretData.expireAfter === undefined ||
     !Validator.isInt(secretData.expireAfter, { min: 0 })
   ) {
-    const errorMsg = "Error! A positive or zero time limit should be provided";
+    const errorMsg = 'Error! A positive or zero time limit should be provided';
     console.error(errorMsg);
     return {
       errorMessage: errorMsg,
@@ -46,7 +46,7 @@ const validateSecret = secretData => {
     };
   }
   return {
-    errorMessage: "",
+    errorMessage: '',
     isValid: true
   };
 };
@@ -57,17 +57,16 @@ const validateQueryParamString = queryParam => {
     queryParam === undefined ||
     Validator.isEmpty(queryParam)
   ) {
-    console.error(
-      "Error! A non-zero long query parameter string must be provided"
-    );
+    const errorMessage =
+      'Error! A non-zero long query parameter string must be provided';
+    console.error(errorMessage);
     return {
-      errorMessage:
-        "Error! A non-zero long query parameter string must be provided",
+      errorMessage,
       isValid: false
     };
   }
   return {
-    errorMessage: "",
+    errorMessage: '',
     isValid: true
   };
 };
